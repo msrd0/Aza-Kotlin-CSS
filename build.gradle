@@ -22,9 +22,9 @@ sourceSets {
 }
 
 dependencies {
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-	testCompile "junit:junit:$junit_version"
+	testImplementation "junit:junit:$junit_version"
 }
 
 
@@ -37,12 +37,32 @@ task sourceJar(type: Jar) {
 }
 
 publishing {
+	repositories {
+		maven {
+			url = uri("file:/tmp/repo")
+		}
+	}
 	publications {
 		MyPublication(MavenPublication) {
 			from components.java
 			groupId 'azadev.kotlin'
 			artifactId 'aza-kotlin-css'
 			version library_version
+
+			pom {
+				name.set("AzaKotlinCSS")
+				description.set("AzaKotlinCSS is a DSL designed for writing CSS using Kotlin")
+				url.set("https://github.com/olegcherr/Aza-Kotlin-CSS")
+				licenses {
+					license {
+						name.set("MIT License")
+						url.set("https://raw.githubusercontent.com/olegcherr/Aza-Kotlin-CSS/master/LICENSE.txt")
+					}
+				}
+				scm {
+					url.set("https://github.com/olegcherr/Aza-Kotlin-CSS")
+				}
+			}
 
 			artifact sourceJar {
 				classifier "sources"
