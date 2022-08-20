@@ -6,7 +6,7 @@ AzaKotlinCSS is a DSL (Domain-specific language) designed for writing CSS using 
 
 ```gradle
 repositories {
-	maven { url = uri("https://msrd0cdn.de/maven/") }
+	maven { url = uri("https://maven.msrd0.de/repo/") }
 }
 
 dependencies {
